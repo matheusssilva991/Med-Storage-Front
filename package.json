@@ -1,0 +1,35 @@
+{
+  "name": "sistema-de-gestao-imagens-medicas",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "axios": "^1.4.0",
+    "bootstrap": "^5.3.0",
+    "core-js": "^3.31.0",
+    "crypto-browserify": "^3.12.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "vue": "^3.3.4",
+    "vue-future-slider": "^1.0.5",
+    "vue-router": "^4.2.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/eslint-parser": "^7.22.5",
+    "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-plugin-eslint": "~5.0.8",
+    "@vue/cli-plugin-router": "~5.0.8",
+    "@vue/cli-service": "~5.0.8",
+    "eslint": "^8.43.0",
+    "eslint-plugin-vue": "^9.15.1"
+  },
+  "overrides": {
+    "semver": "~7.5.2"
+  }
+}
