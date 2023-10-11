@@ -15,20 +15,37 @@
 					</div>
 					<div class="modal-info">
 						<label> ID Paciente </label>
-						<input type="text" id="image-info" v-model="imageInfo.patient_id" readonly>
-						<label> Lado da Mama </label>
-						<input type="text" id="image-info" v-model="imageInfo.leftOrRightBreast" readonly>
-						<label> Orientação </label>
-						<input type="text" id="image-info" v-model="imageInfo.orientation" readonly>
-						<label> Qualidade da Imagem (Bits) </label>
-						<input type="text" id="image-info" v-model="imageInfo.imageQuality" readonly>
-						<label> Patologia </label>
-						<input type="text" id="image-info" v-model="imageInfo.pathology" readonly>
-
-						<div v-if="imageInfo.biRads">
-							<label> BI-RADS </label>
-							<input type="text" id="image-info" v-model="imageInfo.biRads" readonly>
+						<input type="text" id="image-info" v-model="imageInfo.patientId" readonly>
+						
+						<div v-if="imageInfo.optionalData?.leftOrRightBreast">
+							<label> Lado da Mama </label>
+							<input type="text" id="image-info" 
+							v-model="imageInfo.optionalData.leftOrRightBreast" readonly>
 						</div>
+						
+						<div v-if="imageInfo.optionalData?.orientation">
+							<label> Orientação </label>
+							<input type="text" id="image-info" 
+							v-model="imageInfo.optionalData.orientation" readonly>
+						</div>
+
+						<div v-if="imageInfo?.optionalData?.imageQuality">
+							<label> Qualidade da Imagem (Bits) </label>
+							<input type="text" id="image-info" 
+							v-model="imageInfo.optionalData.imageQuality" readonly>
+						</div>
+
+						<div v-if="imageInfo?.pathology">
+							<label> Patologia </label>
+							<input type="text" id="image-info" 
+							v-model="imageInfo.pathology" readonly>
+						</div>
+
+						<div v-if="imageInfo.optionalData?.biRads">
+							<label> BI-RADS </label>
+							<input type="text" id="image-info" 
+							v-model="imageInfo.optionalData.biRads" readonly>
+						</div> 
 					</div>
 
 
@@ -74,10 +91,21 @@ export default {
 				});
 
 				this.imageInfo = this.imageInfo[ 0 ];
-				this.imageInfo[ 'pathology' ] = this.imageInfo.classification.pathology;
-				this.imageInfo[ 'biRads' ] = this.imageInfo.classification.biRads;
+
+				if (this.imageInfo.optionalData?.pathology) {
+					this.imageInfo[ 'pathology' ] = this.imageInfo.optionalData.pathology;
+				} else if (this.imageInfo.requiredData?.pathology) {
+					this.imageInfo[ 'pathology' ] = this.imageInfo.requiredData.pathology;
+				} else {
+					this.imageInfo[ 'pathology' ] = 'Não informado';
+				}
+				
+				this.imageInfo[ 'biRads' ] = this.imageInfo.optionalData.biRads;
 			});
 		}
+
+		console.log(this.imageInfo)
+
 	},
 	data() {
 		return {
@@ -104,8 +132,6 @@ export default {
 	justify-content: center;
 	align-items: center;
 	z-index: 9999;
-
-
 }
 
 .modal-dialog {

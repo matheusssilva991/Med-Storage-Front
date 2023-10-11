@@ -50,7 +50,7 @@ export default {
 		ImageModalComp
 	},
 	mounted() {
-		const imagesContext = require.context('@/assets/images', false, /\.(png|jpe?g|gif|svg)$/);
+		const imagesContext = require.context('@/assets/images', true, /\.(png|jpe?g|gif|svg)$/);
 
 		imagesContext.keys().forEach((key, index) => {
 			const image = {
